@@ -3,7 +3,7 @@ import Card from "./Card";
 import { FaSearch } from "react-icons/fa";
 
 
-const Form = () => {
+const WeatherForm = () => {
   const [data, setData] = useState();
   const [city, setCity] = useState();
 
@@ -27,12 +27,12 @@ const Form = () => {
         />
 
         <button
-          id="button"
+          id="search"
           type="button"
           className="icon"
           onClick={getRequest}
           aria-label="Search">
-          <FaSearch />
+          <FaSearch style={{cursor: "pointer"}} />
         </button>
       </div>
 
@@ -54,4 +54,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default WeatherForm;

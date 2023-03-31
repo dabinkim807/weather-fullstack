@@ -1,5 +1,5 @@
 import './App.css';
-import Form from "./components/Form";
+import WeatherForm from "./components/WeatherForm";
 import MyNavbar from "./components/Navbar"
 // import { useMediaQuery } from "react-responsive";
 
@@ -12,7 +12,7 @@ function App() {
       <header>
         <h1>weather API</h1>
       </header>
-      <Form />
+      <WeatherForm />
     </div>
   );
 }

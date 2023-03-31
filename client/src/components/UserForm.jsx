@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaCheckCircle } from "react-icons/fa";
 
 const UserForm = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -72,9 +73,8 @@ const UserForm = () => {
         id="check-user"
         type="button"
         className="icon"
-        onClick={() => {getRequest(user)}}
-        style={{cursor: "pointer"}}>
-        Check
+        onClick={() => {getRequest(user)}}>
+        <FaCheckCircle style={{cursor: "pointer"}} />
       </button>
     </div>
   );

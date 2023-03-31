@@ -1,18 +1,20 @@
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import MyNavBar from './components/Navbar'
-import ListStudents from './components/ListStudents'
+import './App.css';
+import Form from "./components/Form";
+import MyNavbar from "./components/Navbar"
+// import { useMediaQuery } from "react-responsive";
 
 
 function App() {
 
   return (
     <div className="App">
-      <MyNavBar />
-      <ListStudents />
-
+      {/* <MyNavbar /> */}
+      <header>
+        <h1>weather API</h1>
+      </header>
+      <Form />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

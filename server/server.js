@@ -3,7 +3,8 @@ const cors = require('cors');
 require('dotenv').config();
 const path = require('path');
 const db = require('./db/db-connection.js');
-const apiKey = process.env.API_KEY;
+// const apiKey = process.env.API_KEY;
+const dataWeather = require("./weather"); // hardcoded data
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -17,18 +18,22 @@ app.get('/', (req, res) => {
 
 app.get('/api/weather', (req, res) => {
     console.log(req.query)
-    const params = new URLSearchParams({
-      q: req.query.cityName,
-      appid: apiKey,
-      units: "imperial"
-    });
+    // const params = new URLSearchParams({
+    //   q: req.query.cityName,
+    //   appid: apiKey,
+    //   units: "imperial"
+    // });
     
-    const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
-    console.log(url);
+    // const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
+    // console.log(url);
     
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => res.send(data)); 
+    // fetch(url)
+    //   .then((response) => response.json())
+    //   .then((data) => res.send(data)); 
+
+    // get hardcoded data
+    console.log(dataWeather);
+    res.json(dataWeather);
 })
 
 app.get('/api/users', async (req, res) => {

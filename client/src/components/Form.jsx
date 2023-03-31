@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import Card from "./Card";
+import Card from "./Card";
 import { FaSearch } from "react-icons/fa";
 
 
@@ -15,8 +15,6 @@ const Form = () => {
         setData(result);
       });
   }
-
-  useEffect(() => {getRequest()}, []);
 
   return (
     <>
@@ -38,7 +36,7 @@ const Form = () => {
         </button>
       </div>
 
-      {/* {data ? (
+      {data ? (
         <Card
           icon={data.weather[0].icon}
           description={data.weather[0].description}
@@ -51,7 +49,7 @@ const Form = () => {
         />
       ) : (
         <div className="empty"></div>
-      )} */}
+      )}
     </>
   );
 };

@@ -20,6 +20,9 @@ app.get('/api/weather', async (req, res) => {
 
     const id = parseInt(req.query.id);
     const name = req.query.user;
+    if (name === undefined || id === NaN) {
+        return res.status(400).end();
+    }
     try {
         console.log(id, name);
         const result = await db.query(
@@ -27,7 +30,7 @@ app.get('/api/weather', async (req, res) => {
         )
         console.log(result.rows);
         if (result.rows.length === 0) {
-            res.status(403).end();
+            return res.status(403).end();
         }
         const params = new URLSearchParams({
             q: req.query.cityName,

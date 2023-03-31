@@ -3,7 +3,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import Card from "./Card";
 import { FaSearch } from "react-icons/fa";
 
-const UserForm = () => {
+const Form = () => {
   const [user, setUser] = useState("");
   const [id, setId] = useState(0);
   const [allowSearch, setAllowSearch] = useState(false)
@@ -113,23 +113,22 @@ const UserForm = () => {
         onClick={checkId}>
         <FaCheckCircle style={{cursor: "pointer"}} />
       </button>
-        <input
-          disabled={!allowSearch}
-          type="text"
-          id="city"
-          placeholder="City name"
-          onChange={(event) => setCity(event.target.value)}
-        />
- 
-        <button
-          disabled={!allowSearch}
-          id="search"
-          type="button"
-          className="icon"
-          onClick={getWeatherRequest}
-          aria-label="Search">
-          <FaSearch style={{cursor: "pointer"}} />
-        </button>
+      <input
+        disabled={!allowSearch}
+        type="text"
+        id="city"
+        placeholder="City name"
+        onChange={(event) => setCity(event.target.value)}
+      />
+      <button
+        disabled={!allowSearch}
+        id="search"
+        type="button"
+        className="icon"
+        onClick={getWeatherRequest}
+        aria-label="Search">
+        <FaSearch style={{cursor: "pointer"}} />
+      </button>
 
       {data !== null ? (
         <Card
@@ -149,4 +148,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default Form;

@@ -71,17 +71,14 @@ app.put('/api/users/:userID', async (req, res) => {
 	return res.end();
 });
 
-app.delete('/api/students/:studentId', async (req, res) => {
-    try {
-        const studentId = req.params.studentId;
-        await db.query('DELETE FROM students WHERE id=$1', [studentId]);
-        console.log("From the delete request-url", studentId);
-        res.status(200).end();
-    } catch (e) {
-        console.log(e);
-        return res.status(400).json({ e });
-
-    }
+app.delete('/api/users/:userID', async (req, res) => {
+    const id = parseInt(req.params.userID);
+	try {
+		await db.query("DELETE FROM users WHERE id = $1", [id]);
+	} catch(error) {
+		return res.status(400).send(String(e));
+	}
+	return res.end();
 });
 
 

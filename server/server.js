@@ -39,7 +39,8 @@ app.get('/api/weather', (req, res) => {
 app.get('/api/users', async (req, res) => {
     try {
         const { rows: users } = await db.query('SELECT * FROM users ORDER BY id ASC');
-        res.send(users);
+        console.log(users);
+        res.json(users);
     } catch (e) {
         return res.status(400).send(String(e));
     }

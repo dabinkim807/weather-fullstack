@@ -93,7 +93,7 @@ input[type=text]:focus {
   outline: none;
   background-color: rgba(239, 239, 240, 0.4);
 }
-#city {
+input {
   font-size: 20px;
   border-radius: 5px;
   border: solid rgba(255, 255, 255, 0.5) 1px;

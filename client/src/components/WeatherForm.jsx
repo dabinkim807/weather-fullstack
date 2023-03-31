@@ -22,7 +22,7 @@ const WeatherForm = () => {
         <input
           type="text"
           id="city"
-          placeholder="Type in a city name"
+          placeholder="City name"
           onChange={(event) => setCity(event.target.value)}
         />
 

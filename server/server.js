@@ -3,8 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const path = require('path');
 const db = require('./db/db-connection.js');
-// const apiKey = process.env.API_KEY;
-const dataWeather = require("./weather"); // hardcoded data
+const apiKey = process.env.API_KEY;
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -16,24 +15,36 @@ app.get('/', (req, res) => {
     res.json({ message: "Hello! This is Dana's template ExpressJS with React-Vite" });
 });
 
-app.get('/api/weather', (req, res) => {
+app.get('/api/weather', async (req, res) => {
     console.log(req.query)
-    // const params = new URLSearchParams({
-    //   q: req.query.cityName,
-    //   appid: apiKey,
-    //   units: "imperial"
-    // });
-    
-    // const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
-    // console.log(url);
-    
-    // fetch(url)
-    //   .then((response) => response.json())
-    //   .then((data) => res.send(data)); 
 
-    // get hardcoded data
-    console.log(dataWeather);
-    res.json(dataWeather);
+    const id = parseInt(req.query.id);
+    const name = req.query.user;
+    try {
+        console.log(id, name);
+        const result = await db.query(
+            "select * from users where name = $1 and id = $2", [name, id]
+        )
+        console.log(result.rows);
+        if (result.rows.length === 0) {
+            res.status(403).end();
+        }
+        const params = new URLSearchParams({
+            q: req.query.cityName,
+            appid: apiKey,
+            units: "imperial"
+          });
+          
+          const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
+          console.log(url);
+          
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => res.send(data)); 
+    } catch (e) {
+        console.log(e);
+        res.status(400).end();
+    }
 })
 
 app.get('/api/users', async (req, res) => {
@@ -75,6 +86,25 @@ app.put('/api/users/:userID', async (req, res) => {
 		return res.status(400).send(String(e));
 	}
 	return res.end();
+});
+
+app.post('/api/validate', async (req, res) => {
+    const id = req.body.id;
+    const name = req.body.name;
+    console.log(req.body);
+    try {
+        const result = await db.query(
+            "select * from users where name = $1 and id = $2", [name, id]
+        )
+        if (result.rows.length === 0) {
+            res.status(403).end();
+        } else {
+            res.status(200).end();
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).end();
+    }
 });
 
 app.delete('/api/users/:userID', async (req, res) => {

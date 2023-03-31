@@ -39,26 +39,21 @@ app.get('/api/users', async (req, res) => {
     }
 });
 
-app.post('/api/students', async (req, res) => {
+app.post('/api/users', async (req, res) => {
     try {
-        const newStudent = {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            iscurrent: req.body.iscurrent
-        };
-        //console.log([newStudent.firstname, newStudent.lastname, newStudent.iscurrent]);
         const result = await db.query(
-            'INSERT INTO students(firstname, lastname, is_current) VALUES($1, $2, $3) RETURNING *',
-            [newStudent.firstname, newStudent.lastname, newStudent.iscurrent],
+            "INSERT INTO users(name, fave_city) VALUES($1, $2) RETURNING *",
+            [req.body.name, req.body.fave_city],
         );
-        console.log(result.rows[0]);
-        res.json(result.rows[0]);
-
+        const returnObj = {
+            id: result.rows[0].id,
+            name: req.body.name,
+            fave_city: req.body.fave_city
+        }
+        return res.status(200).json(returnObj);
     } catch (e) {
-        console.log(e);
-        return res.status(400).json({ e });
+        return res.status(400).send(String(e));
     }
-
 });
 
 app.put('/api/students/:studentId', async (req, res) =>{

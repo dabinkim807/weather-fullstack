@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const path = require('path');
 const db = require('./db/db-connection.js');
+const apiKey = process.env.API_KEY;
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -13,6 +14,21 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.json({ message: "Hello! This is Dana's template ExpressJS with React-Vite" });
 });
+
+app.get('/api/weather', (req, res) => {
+    const params = new URLSearchParams({
+      q: req.query.cityName,
+      appid: apiKey,
+      units: "imperial"
+    });
+    
+    const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
+    console.log(url);
+    
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => res.send(data)); 
+})
 
 app.get('/api/users', async (req, res) => {
     try {
@@ -81,5 +97,5 @@ app.delete('/api/students/:studentId', async (req, res) => {
 
 
   app.listen(PORT, () => {
-    console.log(`Hola, Server listening on ${PORT}`);
+    console.log(`Hello, server is listening on ${PORT}`);
 });

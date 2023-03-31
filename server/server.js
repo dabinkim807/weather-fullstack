@@ -4,28 +4,25 @@ require('dotenv').config();
 const path = require('path');
 const db = require('./db/db-connection.js');
 
-
 const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-// creates an endpoint for the route "/""
+
 app.get('/', (req, res) => {
-    res.json({ message: 'Hola, from My template ExpressJS with React-Vite' });
+    res.json({ message: "Hello! This is Dana's template ExpressJS with React-Vite" });
 });
 
-// create the get request for students in the endpoint '/api/students'
-app.get('/api/students', async (req, res) => {
+app.get('/api/users', async (req, res) => {
     try {
-        const { rows: students } = await db.query('SELECT * FROM students');
-        res.send(students);
+        const { rows: users } = await db.query('SELECT * FROM users ORDER BY id ASC');
+        res.send(users);
     } catch (e) {
-        return res.status(400).json({ e });
+        return res.status(400).send(String(e));
     }
 });
 
-// create the POST request
 app.post('/api/students', async (req, res) => {
     try {
         const newStudent = {
@@ -48,21 +45,6 @@ app.post('/api/students', async (req, res) => {
 
 });
 
-// delete request for students
-app.delete('/api/students/:studentId', async (req, res) => {
-    try {
-        const studentId = req.params.studentId;
-        await db.query('DELETE FROM students WHERE id=$1', [studentId]);
-        console.log("From the delete request-url", studentId);
-        res.status(200).end();
-    } catch (e) {
-        console.log(e);
-        return res.status(400).json({ e });
-
-    }
-});
-
-//A put request - Update a student 
 app.put('/api/students/:studentId', async (req, res) =>{
     //console.log(req.params);
     //This will be the id that I want to find in the DB - the student to be updated
@@ -82,9 +64,22 @@ app.put('/api/students/:studentId', async (req, res) =>{
       console.log(e);
       return res.status(400).json({e})
     }
-  })
+})
 
-// console.log that your server is up and running
-app.listen(PORT, () => {
+app.delete('/api/students/:studentId', async (req, res) => {
+    try {
+        const studentId = req.params.studentId;
+        await db.query('DELETE FROM students WHERE id=$1', [studentId]);
+        console.log("From the delete request-url", studentId);
+        res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
+
+    }
+});
+
+
+  app.listen(PORT, () => {
     console.log(`Hola, Server listening on ${PORT}`);
 });

@@ -1,73 +1,131 @@
-.App {
-  min-height: 100vh;
-  background-color: rgb(238, 232, 232);
-  margin: 5px;
-}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+	v2.0 | 20110126
+	License: none (public domain)
+*/
 
-.mybody {
-  display: flex;
-  gap: 3em;
-  padding: 1em;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
-a.navbar-brand {
-  margin-inline-start: -5em;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
-
-.nav-link {
-  color: white !important;
-  margin-left: 5em;
+body {
+  line-height: 1;
 }
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* end reset */
 
-.list-students {
+
+
+/* ------ DEFAULT DISPLAY: Extra small devices (phones, 600px and down) ------- */
+
+
+/* --- Basic Display --- */
+
+body {
+  margin: 0 400px;
+  /* font-family: 'Mulish', sans-serif; */
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-weight: 300;
+  /* display: flex; */
+  justify-content: center;
   text-align: center;
-  margin-top: 25px;
-  flex: 1
+  background: rgb(245,215,228);
+  background: linear-gradient(0deg, rgba(245,215,228,1) 0%, rgba(148,187,233,1) 100%);
+  min-height: 88vh;
+  color: white;
 }
+/* .App {
+  margin: auto;
+} */
 
-ul {
-  list-style-type: none;
+
+/* --- Main Content --- */
+
+h1 {
+  margin: 200px 0 30px 0;
+  font-size: 40px;
+  letter-spacing: 2px;
+  font-weight: 400;
 }
-
-
-form {
-  flex-direction: column;
-  align-items: center;
+h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  letter-spacing: 0.8px;
+}
+::placeholder {
+  color: white;
+}
+input[type=text]:focus {
+  outline: none;
+  background-color: rgba(239, 239, 240, 0.4);
+}
+input {
+  font-size: 20px;
+  border-radius: 5px;
+  border: solid rgba(255, 255, 255, 0.5) 1px;
+  padding: 3px 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+.card {
+  margin: 50px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.container {
+  padding: 40px 30px;
   text-align: left;
-  margin-top: 3em;
-  flex: 1;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: 0.4px;
+  font-weight: 300;
 }
 
-input[type=text] {
-  display: inline-block;
-  margin-top: -10px;
-  width: 100%;
-  font-size: 15px;
-  border-radius: 2px;
-  border: 3px solid #98d0f1
-}
+/* --- Media --- */
 
-button.btn.btn-primary {
-  margin-top: 25px;
-}
-
-.myicon {
-  stroke: rgb(243, 121, 7);
-  color: rgb(243, 121, 7);
-  stroke-width: 10;
-  margin-right: 0.9em;
-}
-
-.form-label {
-  margin-bottom: 0 !important;
-  margin-top: 0.5em;
-}
-
-.form-check {
-  margin-top: 1em;
-}
-
-.card-body {
-  margin-left: 2em;
-  margin-right: 2em;
+.icon {
+  background: none;
+  border: none;
+  font-size: 25px;
+  margin-left: 15px;
+  color: rgba(255, 255, 255, 0.8);
 }
